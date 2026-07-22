@@ -210,25 +210,31 @@ button{font-family:inherit;color:inherit;border:none;background:none;cursor:poin
   font-weight:600;margin-bottom:9px}
 
 /* ---------- mini timeline ---------- */
-.mtl{position:relative;height:34px}
-.mtl-line{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--border);border-radius:2px}
-.mtl-fill{position:absolute;left:0;top:9px;height:2px;background:linear-gradient(90deg,#1f7a45,var(--green));border-radius:2px}
-.mtl-over{position:absolute;top:9px;height:2px;background:repeating-linear-gradient(90deg,var(--red) 0 4px,transparent 4px 8px)}
-.mtl-node{position:absolute;top:4px;transform:translateX(-50%);cursor:default}
+.mtl-top{display:flex;align-items:baseline;gap:10px;font-size:11px;color:var(--muted);
+  font-variant-numeric:tabular-nums;margin-bottom:7px}
+.mtl-top .r{margin-left:auto;display:flex;align-items:baseline;gap:6px}
+.mtl-top s{color:var(--dim);text-decoration-thickness:1px}
+.mtl-top b{font-weight:600}
+.mtl{position:relative;height:16px;margin:0 9px}
+.mtl-line{position:absolute;left:0;right:0;top:7px;height:2px;background:var(--border);border-radius:2px}
+.mtl-fill{position:absolute;left:0;top:7px;height:2px;background:linear-gradient(90deg,#1f7a45,var(--green));border-radius:2px}
+.mtl-over{position:absolute;top:7px;height:2px;background:repeating-linear-gradient(90deg,var(--red) 0 4px,transparent 4px 8px)}
+.mtl-node{position:absolute;top:2px;transform:translateX(-50%);cursor:default;line-height:0}
 .mtl-dot{width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--muted);
-  display:block;transition:.15s}
+  display:block;transition:.15s;box-sizing:border-box}
 .mtl-node.start .mtl-dot{border-color:var(--green);background:var(--green)}
 .mtl-node.proj .mtl-dot{border-color:var(--blue);width:11px;height:11px;border-radius:2px;transform:rotate(45deg);margin-top:.5px}
 .mtl-node.rev .mtl-dot{border-color:var(--amber);width:10px;height:10px;border-radius:2px;transform:rotate(45deg);margin-top:1px}
+.mtl-node.rev.last .mtl-dot{background:var(--amber)}
 .mtl-node.real .mtl-dot{border-color:var(--green);background:var(--green);box-shadow:0 0 0 3px rgba(74,222,128,.16)}
-.mtl-node.today .mtl-dot{width:2px;height:20px;border-radius:1px;background:#fff;border:none;margin-top:-4px;opacity:.55}
+.mtl-node.today .mtl-dot{width:2px;height:18px;border-radius:1px;background:#fff;border:none;margin-top:-3px;opacity:.5}
 .mtl-cap{position:absolute;top:19px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--muted);
   white-space:nowrap;font-variant-numeric:tabular-nums}
-.mtl-node:hover .mtl-dot{transform:scale(1.25) rotate(var(--rot,0deg))}
-.mtl-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted);margin-top:2px}
+.mtl-node:hover .mtl-dot{filter:brightness(1.35)}
+.mtl-meta{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--muted);margin-top:9px}
 
-/* tooltip */
-.tip{position:relative}
+/* tooltip — NOTE: .tip must not set `position`, or it overrides the
+   absolute positioning on .mtl-node / .btl-node (same specificity, later rule wins). */
 .tip .tip-box{
   position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
   background:#111b26;border:1px solid #26374a;border-radius:10px;padding:10px 12px;width:250px;
@@ -297,7 +303,7 @@ button{font-family:inherit;color:inherit;border:none;background:none;cursor:poin
 .li:first-child{padding-top:0}
 .li-title{font-size:12.8px;font-weight:500;line-height:1.45}
 .li-meta{font-size:11px;color:var(--dim);margin-top:3px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.cbx{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--dim);flex:none;margin-top:1px}
+.cbx{display:inline-block;width:15px;height:15px;border-radius:4px;border:1.5px solid var(--dim);flex:none;margin-top:1px}
 .cbx.done{background:var(--green-deep);border-color:var(--green-deep);display:grid;place-items:center}
 .cbx.done svg{width:9px;height:9px;color:#04140a}
 .cbx.block{border-color:var(--red);background:var(--red-bg);display:grid;place-items:center}
@@ -308,6 +314,8 @@ table{width:100%;border-collapse:collapse;font-size:12.5px}
 th{text-align:left;font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
   font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--border)}
 td{padding:12px;border-bottom:1px solid var(--border-soft);vertical-align:middle;color:var(--text-2)}
+td.nw{white-space:nowrap}
+td .who{display:flex;align-items:center;white-space:nowrap}
 tr:last-child td{border-bottom:none}
 tbody tr{transition:.13s}
 tbody tr:hover{background:rgba(255,255,255,.02)}
@@ -325,14 +333,14 @@ td.strong{color:var(--text);font-weight:500}
 .driver .v{width:34px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-2);font-weight:500}
 
 /* ---------- big timeline ---------- */
-.btl-wrap{padding:38px 30px 26px;background:linear-gradient(180deg,#0b131c,#080e15);
+.btl-wrap{padding:58px 30px 26px;background:linear-gradient(180deg,#0b131c,#080e15);
   border:1px solid var(--border);border-radius:var(--radius-lg);position:relative;overflow:visible}
-.btl{position:relative;height:104px;margin:0 22px}
+.btl{position:relative;height:104px;margin:0 82px}
 .btl-track{position:absolute;left:0;right:0;top:34px;height:3px;background:var(--border);border-radius:3px}
 .btl-done{position:absolute;top:34px;height:3px;background:linear-gradient(90deg,#166534,var(--green));border-radius:3px}
 .btl-slip{position:absolute;top:34px;height:3px;border-radius:3px;
   background:repeating-linear-gradient(90deg,rgba(251,191,36,.9) 0 5px,transparent 5px 10px)}
-.btl-node{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:150px;margin-left:-75px}
+.btl-node{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:150px}
 .btl-node .knob{width:16px;height:16px;border-radius:50%;background:var(--bg);border:2.5px solid var(--muted);
   margin:28px auto 0;position:relative;z-index:2;transition:.18s}
 .btl-node.locked .knob{border-color:var(--blue);border-radius:3px;transform:rotate(45deg);width:14px;height:14px}
@@ -347,8 +355,8 @@ td.strong{color:var(--text);font-weight:500}
 .btl-date{font-size:12.5px;font-weight:600;margin-top:11px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .btl-src{font-size:10px;color:var(--dim);margin-top:3px;display:flex;align-items:center;justify-content:center;gap:4px}
 .btl-src svg{width:10px;height:10px}
-.today-marker{position:absolute;top:14px;bottom:34px;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35));z-index:1}
-.today-flag{position:absolute;top:0;transform:translateX(-50%);font-size:9.5px;letter-spacing:.08em;
+.today-marker{position:absolute;top:-16px;bottom:56px;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35));z-index:1}
+.today-flag{position:absolute;top:-34px;transform:translateX(-50%);font-size:9.5px;letter-spacing:.08em;
   text-transform:uppercase;color:#93a3b4;background:var(--card-3);border:1px solid var(--border);
   border-radius:5px;padding:2px 7px;white-space:nowrap}
 .btl-legend{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:20px;padding-top:16px;
@@ -375,7 +383,9 @@ td.strong{color:var(--text);font-weight:500}
 .input{height:36px;border-radius:9px;background:#080e15;border:1px solid var(--border);padding:0 12px;
   font-size:12.5px;color:var(--text);width:100%;font-family:inherit}
 .input.ta{height:36px;line-height:34px}
-.hint{font-size:11px;color:var(--dim);margin-top:10px;display:flex;align-items:center;gap:6px}
+.hint{font-size:11px;color:var(--dim);margin-top:10px;display:flex;align-items:flex-start;gap:6px;line-height:1.55}
+.hint svg{margin-top:2px}
+.hint code{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:var(--card-3);padding:1px 5px;border-radius:4px;color:var(--text-2)}
 .hint svg{width:12px;height:12px;flex:none}
 
 /* summary card */
@@ -757,8 +767,7 @@ td.strong{color:var(--text);font-weight:500}
                 <div><div class="li-title">VPN credentials outstanding for 13 of 16 rollout buildings</div>
                 <div class="li-meta"><span class="badge bg-red" style="height:19px">Blocked 34d</span><span class="badge bg-violet" style="height:19px">CS</span> Waiting on: CBRE IT/OT security review</div></div></div>
             </div>
-            <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
-              Blockers are the <code>blocker</code> flag on any Dev or CS task — same tag Linear already uses.</div>
+            <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg><span>Blockers are the <code>blocker</code> flag on any Dev or CS task — same tag Linear already uses.</span></div>
           </div>
         </div>
       </div>
@@ -782,7 +791,7 @@ td.strong{color:var(--text);font-weight:500}
             <div class="driver"><span style="width:96px">Documentation</span><span class="bar"><i style="width:75%;background:var(--amber)"></i></span><span class="v">75</span></div>
             <div class="driver"><span style="width:96px">Client engagement</span><span class="bar"><i style="width:82%;background:var(--green)"></i></span><span class="v">82</span></div>
           </div>
-          <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>Scoring weights TBD — defined as a group.</div>
+          <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg><span>Scoring weights TBD — defined as a group.</span></div>
         </div>
 
         <div class="panel">
@@ -799,7 +808,12 @@ td.strong{color:var(--text);font-weight:500}
           </table>
         </div>
 
-        <div class="panel">
+
+      </div>
+    </div>
+
+    <div class="grid g-2 mt-20">
+      <div class="panel">
           <div class="panel-head"><div class="panel-title">Client stakeholders <span class="sub">from HubSpot</span></div></div>
           <div class="list">
             <div class="li" style="align-items:center"><span class="ava ava-4" style="width:26px;height:26px;font-size:10px">DK</span>
@@ -811,7 +825,7 @@ td.strong{color:var(--text);font-weight:500}
           </div>
         </div>
 
-        <div class="panel">
+      <div class="panel">
           <div class="panel-head"><div class="panel-title">At a glance</div></div>
           <div class="kv"><span class="k">Start date</span><span class="v num">Mar 3, 2026</span></div>
           <div class="kv"><span class="k">Projected end (locked)</span><span class="v num">Jun 30, 2026</span></div>
@@ -821,7 +835,6 @@ td.strong{color:var(--text);font-weight:500}
           <div class="kv"><span class="k">Linear project</span><span class="v"><span class="mono t-blue">OUT · CBRE ITOT</span></span></div>
           <div class="kv"><span class="k">Last published update</span><span class="v num">Jul 15, 2026</span></div>
         </div>
-      </div>
     </div>
   </div>
 
@@ -840,8 +853,8 @@ td.strong{color:var(--text);font-weight:500}
     <div class="btl-wrap">
       <div class="btl">
         <div class="btl-track"></div>
-        <div class="btl-done" style="left:0;width:58%"></div>
-        <div class="btl-slip" style="left:58%;width:42%"></div>
+        <div class="btl-done" style="left:0;width:39%"></div>
+        <div class="btl-slip" style="left:39%;width:61%"></div>
 
         <div class="today-marker" style="left:70%"></div>
         <div class="today-flag" style="left:70%">Today · Jul 22</div>
@@ -912,19 +925,19 @@ td.strong{color:var(--text);font-weight:500}
           <thead><tr><th>Filed</th><th>From</th><th>To</th><th>Δ</th><th>Rationale</th><th>By</th></tr></thead>
           <tbody>
             <tr>
-              <td class="num">Jun 30, 2026</td><td class="num">Jul 24</td><td class="num strong t-amber">Aug 14</td><td class="t-red num">+21d</td>
+              <td class="num nw">Jun 30, 2026</td><td class="num nw">Jul 24</td><td class="num strong t-amber nw">Aug 14</td><td class="t-red num nw">+21d</td>
               <td>Smartsheet API account tied to a departed employee — service-account migration is a hard prerequisite for the 16-building rollout.</td>
-              <td>Mike McGugan</td>
+              <td class="nw">Mike McGugan</td>
             </tr>
             <tr>
-              <td class="num">May 12, 2026</td><td class="num">Jun 30</td><td class="num strong">Jul 24</td><td class="t-red num">+24d</td>
+              <td class="num nw">May 12, 2026</td><td class="num nw">Jun 30</td><td class="num strong nw">Jul 24</td><td class="t-red num nw">+24d</td>
               <td>CBRE IT/OT security review added ~3 weeks of access provisioning before we could reach the OT network.</td>
-              <td>Mike McGugan</td>
+              <td class="nw">Mike McGugan</td>
             </tr>
             <tr>
-              <td class="num">Mar 3, 2026</td><td class="t-mute">—</td><td class="num strong">Jun 30</td><td class="t-mute">baseline</td>
+              <td class="num nw">Mar 3, 2026</td><td class="t-mute">—</td><td class="num strong nw">Jun 30</td><td class="t-mute">baseline</td>
               <td>Original projected end date set at scoping. Locked.</td>
-              <td>Mike McGugan</td>
+              <td class="nw">Mike McGugan</td>
             </tr>
           </tbody>
         </table>
@@ -944,8 +957,7 @@ td.strong{color:var(--text);font-weight:500}
           <div class="phase-bar"><i style="width:18%;background:var(--card-3);border:1px dashed #2a3a4c"></i></div><div class="phase-days t-mute">est. 21d</div></div>
         <div class="phase-row"><div class="phase-name"><span class="badge" style="height:19px;background:var(--card-3);color:var(--dim)">Next</span>Live</div>
           <div class="phase-bar"><i style="width:5%;background:var(--card-3);border:1px dashed #2a3a4c"></i></div><div class="phase-days t-mute">—</div></div>
-        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
-          Build has consumed 62% of elapsed project time. Open blockers in this phase are what both revisions point to.</div>
+        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg><span>Build has consumed 62% of elapsed project time. Open blockers in this phase are what both revisions point to.</span></div>
       </div>
     </div>
   </div>
@@ -1000,8 +1012,7 @@ td.strong{color:var(--text);font-weight:500}
             <div><div class="li-title">Created in Octo by Customer Solutions</div>
               <div class="li-meta">Kickoff scheduling, client emails, PRD sign-off chasing — work that never belonged in Linear but has to be in the summary.</div></div></div>
         </div>
-        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
-          The generated summary is only accurate when both Dev and CS context are present. That's why CS tasks live here.</div>
+        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg><span>The generated summary is only accurate when both Dev and CS context are present. That's why CS tasks live here.</span></div>
       </div>
 
       <div class="panel">
@@ -1268,8 +1279,8 @@ td.strong{color:var(--text);font-weight:500}
 
 <script>
 /* ================== DATA ================== */
-const TODAY = new Date('2026-07-22');
 const D = s => new Date(s + 'T12:00:00');
+const TODAY = D('2026-07-22');
 const fmt = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
 const money = n => '$' + n.toLocaleString();
 
@@ -1338,45 +1349,58 @@ const HEALTH_CLASS = {'On Track':'bg-green','At Risk':'bg-amber','Off Track':'bg
 function miniTimeline(p){
   const start = D(p.start), proj = D(p.proj);
   const latest = p.real ? D(p.real) : (p.revs.length ? D(p.revs[p.revs.length-1].date) : proj);
-  const end = new Date(Math.max(latest.getTime(), proj.getTime()));
+  const end = new Date(Math.max(latest.getTime(), proj.getTime(), p.real?0:TODAY.getTime()));
   const span = Math.max(end - start, 1);
-  const pos = d => Math.round(((D(d) - start) / span) * 100);
+  const pos = d => Math.round(((D(d) - start) / span) * 1000)/10;
   const todayPct = p.real ? null : Math.max(0, Math.min(100, Math.round(((TODAY - start)/span)*100)));
-
   const projPct = pos(p.proj);
-  let html = '<div class="mtl"><div class="mtl-line"></div>';
+  const slip = Math.round((latest - proj)/864e5);
+  const remain = Math.round((latest - TODAY)/864e5);
+
+  /* --- date row: original projected end → where it actually landed --- */
+  let right;
+  if (p.real)
+    right = `${slip!==0?`<s>${fmt(proj)}</s> <span style="color:var(--dim)">→</span> `:''}<b class="t-green">${fmt(D(p.real))}</b> <span style="color:var(--dim)">delivered</span>`;
+  else if (p.revs.length)
+    right = `<s>${fmt(proj)}</s> <span style="color:var(--dim)">→</span> <b class="t-amber">${fmt(latest)}</b> <span style="color:var(--dim)">rev ${p.revs.length}</span>`;
+  else
+    right = `<b style="color:var(--text-2)">${fmt(proj)}</b> <span style="color:var(--dim)">projected</span>`;
+
+  let html = `<div class="mtl-top"><span>${fmt(start)} <span style="color:var(--dim)">start</span></span><span class="r">${right}</span></div>`;
+
+  /* --- track --- */
+  html += '<div class="mtl"><div class="mtl-line"></div>';
   html += `<div class="mtl-fill" style="width:${Math.min(projPct, todayPct===null?100:todayPct)}%"></div>`;
   if (projPct < 100) html += `<div class="mtl-over" style="left:${projPct}%;width:${100-projPct}%"></div>`;
 
-  html += `<div class="mtl-node start tip" style="left:0"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(start)}</span>
-    <div class="tip-box" style="left:0;transform:none"><b>Start date</b>Auto-derived from the kickoff call logged in Slack or email. Locked.</div></div>`;
+  html += `<div class="mtl-node start tip" style="left:0"><span class="mtl-dot"></span>
+    <div class="tip-box" style="left:0;transform:none"><b>Start date — ${fmt(start)}</b>Auto-derived from the kickoff call logged in Slack or email. Locked.</div></div>`;
 
-  html += `<div class="mtl-node proj tip" style="left:${projPct}%"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(proj)}</span>
-    <div class="tip-box"><b>Projected end — locked</b>Set at scoping and never edited, so overrun stays measurable.</div></div>`;
+  html += `<div class="mtl-node proj tip" style="left:${projPct}%"><span class="mtl-dot"></span>
+    <div class="tip-box"><b>Projected end — ${fmt(proj)}</b>Locked at scoping and never edited, so overrun stays measurable.</div></div>`;
 
   p.revs.forEach((r,i)=>{
-    html += `<div class="mtl-node rev tip" style="left:${pos(r.date)}%"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(D(r.date))}</span>
-      <div class="tip-box"><b>Revision ${i+1} — filed ${r.filed}</b>${r.why}</div></div>`;
+    const lastRev = i === p.revs.length-1;
+    html += `<div class="mtl-node rev tip ${lastRev?'last':''}" style="left:${pos(r.date)}%"><span class="mtl-dot"></span>
+      <div class="tip-box"><b>Revision ${i+1} — ${fmt(D(r.date))}, filed ${r.filed}</b>${r.why}</div></div>`;
   });
 
   if (p.real){
-    html += `<div class="mtl-node real tip" style="left:${pos(p.real)}%"><span class="mtl-dot"></span><span class="mtl-cap t-green">${fmt(D(p.real))}</span>
-      <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date</b>Auto-filled from the deployment email. Delivered ${Math.round((D(p.real)-proj)/864e5)} days ${D(p.real)>proj?'after':'before'} the projected end.</div></div>`;
-  } else {
-    html += `<div class="mtl-node real tip" style="left:100%"><span class="mtl-dot" style="background:var(--bg);border-color:var(--dim);border-style:dashed;box-shadow:none"></span><span class="mtl-cap" style="color:var(--dim)">Real end</span>
-      <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date — pending</b>Auto-filled when the deployment email is detected.</div></div>`;
-    if (todayPct !== null) html += `<div class="mtl-node today" style="left:${todayPct}%"><span class="mtl-dot"></span></div>`;
+    html += `<div class="mtl-node real tip" style="left:${pos(p.real)}%"><span class="mtl-dot"></span>
+      <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date — ${fmt(D(p.real))}</b>Auto-filled from the deployment email. Delivered ${Math.abs(slip)} days ${slip>0?'after':'before'} the projected end.</div></div>`;
+  } else if (todayPct !== null){
+    html += `<div class="mtl-node today tip" style="left:${todayPct}%"><span class="mtl-dot"></span>
+      <div class="tip-box"><b>Today — Jul 22, 2026</b>Real end date is auto-filled when the deployment email is detected in Gmail or Slack.</div></div>`;
   }
   html += '</div>';
 
-  const slip = Math.round((latest - proj)/864e5);
-  const remain = Math.round((latest - TODAY)/864e5);
+  /* --- meta --- */
   let meta = `<div class="mtl-meta">`;
-  if (p.real) meta += `<span class="t-green">Delivered ${fmt(D(p.real))}</span>`;
-  else meta += `<span>${remain} days remaining</span>`;
-  if (p.revs.length) meta += `<span>·</span><span class="t-amber">${p.revs.length} revision${p.revs.length>1?'s':''} · +${slip}d</span>`;
-  else if (p.real && slip !== 0) meta += `<span>·</span><span class="${slip>0?'t-amber':'t-green'}">${slip>0?'+':''}${slip}d vs. projected</span>`;
-  else meta += `<span>·</span><span class="t-green">No revisions</span>`;
+  meta += p.real ? `<span class="t-green">Delivered</span>` : `<span><b style="color:var(--text-2);font-weight:600">${remain}</b> days remaining</span>`;
+  meta += `<span style="color:var(--dim)">·</span>`;
+  if (p.revs.length) meta += `<span class="t-amber">${p.revs.length} revision${p.revs.length>1?'s':''} · +${slip}d overrun</span>`;
+  else if (p.real && slip !== 0) meta += `<span class="${slip>0?'t-amber':'t-green'}">${slip>0?'+':''}${slip}d vs. projected</span>`;
+  else meta += `<span class="t-green">No revisions</span>`;
   meta += `</div>`;
   return html + meta;
 }
@@ -1483,7 +1507,7 @@ function renderTasks(){
       <td class="strong">${title}</td>
       <td><span class="badge ${type==='DEV'?'bg-blue':'bg-violet'}">${type}</span></td>
       <td class="mono ${type==='DEV'?'t-blue':'t-mute'}">${ref}</td>
-      <td>${avatar}${who}</td>
+      <td><span class="who">${avatar}${who}</span></td>
       <td>${phase}</td>
       <td class="num">${due}</td>
       <td>${STATUS_BADGE[st]}</td>
