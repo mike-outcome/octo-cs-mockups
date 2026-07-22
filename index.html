@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Octo — Customer Solutions (Mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   OCTO — Customer Solutions redesign mockup
+   Design tokens
+   ============================================================ */
+:root{
+  --bg:#05080c;
+  --bg-rail:#080b11;
+  --panel:#0a1017;
+  --card:#0c131b;
+  --card-2:#111a24;
+  --card-3:#16202c;
+  --border:#1a2532;
+  --border-soft:#131c26;
+  --text:#e8eef5;
+  --text-2:#b3c0cf;
+  --muted:#7a8899;
+  --dim:#4c5a6a;
+  --green:#4ade80;
+  --green-deep:#22c55e;
+  --green-bg:rgba(74,222,128,.11);
+  --amber:#fbbf24;
+  --amber-bg:rgba(251,191,36,.12);
+  --red:#f87171;
+  --red-bg:rgba(248,113,113,.13);
+  --blue:#60a5fa;
+  --blue-bg:rgba(96,165,250,.12);
+  --violet:#a78bfa;
+  --violet-bg:rgba(167,139,250,.12);
+  --radius:12px;
+  --radius-lg:16px;
+  --rail:64px;
+  --shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -12px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:14px;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;border:none;background:none;cursor:pointer;font-size:inherit}
+::selection{background:rgba(74,222,128,.25)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#1c2733;border-radius:8px;border:3px solid var(--bg)}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ---------- mockup banner ---------- */
+.mock-banner{
+  position:fixed;top:0;left:0;right:0;height:30px;z-index:200;
+  background:linear-gradient(90deg,#0d2a1c,#0a1720);
+  border-bottom:1px solid #1c3a2a;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6ee7a0;font-weight:500;
+}
+.mock-banner b{color:#cfe9da;font-weight:600}
+.mock-banner .sep{color:#2c5140}
+
+/* ---------- rail ---------- */
+.rail{
+  position:fixed;top:30px;left:0;bottom:0;width:var(--rail);
+  background:var(--bg-rail);border-right:1px solid var(--border-soft);
+  display:flex;flex-direction:column;align-items:center;padding:14px 0 16px;z-index:100;
+}
+.logo{
+  width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%, rgba(74,222,128,.28), rgba(74,222,128,.04) 70%);
+  border:1px solid rgba(74,222,128,.22);margin-bottom:22px;
+}
+.logo svg{width:20px;height:20px}
+.rail-nav{display:flex;flex-direction:column;gap:4px;flex:1}
+.rail-btn{
+  width:40px;height:38px;border-radius:10px;display:grid;place-items:center;
+  color:var(--dim);transition:.15s;position:relative;
+}
+.rail-btn:hover{color:var(--text-2);background:rgba(255,255,255,.035)}
+.rail-btn.on{color:var(--green);background:var(--green-bg)}
+.rail-btn.on::before{content:'';position:absolute;left:-12px;top:9px;bottom:9px;width:2px;border-radius:2px;background:var(--green)}
+.rail-btn svg{width:18px;height:18px}
+.avatar-sm{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2f4b3d,#1c2b35);
+  display:grid;place-items:center;font-size:11px;font-weight:600;color:#9fd8b4;border:1px solid #22323f}
+
+/* ---------- layout ---------- */
+.app{margin-left:var(--rail);padding-top:30px;min-height:100vh}
+.wrap{max-width:1560px;margin:0 auto;padding:0 32px 80px}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:28px 0 22px;flex-wrap:wrap}
+.page-title{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0}
+.page-sub{color:var(--muted);font-size:12.5px;margin-top:3px}
+.topbar-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.search{
+  display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:0 14px;height:38px;width:270px;color:var(--muted);font-size:13px;
+}
+.search svg{width:15px;height:15px;flex:none}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;border-radius:10px;
+  background:var(--card);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text-2);
+  transition:.15s;white-space:nowrap;
+}
+.btn:hover{background:var(--card-2);border-color:#243342;color:var(--text)}
+.btn svg{width:15px;height:15px;flex:none}
+.btn-primary{background:linear-gradient(180deg,#1c8f4e,#157a41);border-color:#26a35c;color:#eafff2;font-weight:600}
+.btn-primary:hover{background:linear-gradient(180deg,#22a35a,#19894a);border-color:#2fbb6b;color:#fff}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn-ghost:hover{background:var(--card);color:var(--text)}
+.btn-sm{height:30px;padding:0 11px;font-size:12px;border-radius:8px}
+.btn-sm svg{width:13px;height:13px}
+
+/* ---------- KPI tiles ---------- */
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:22px}
+.kpi{
+  background:linear-gradient(180deg,var(--card),#0a1017);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:16px 17px 15px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);transition:.18s;cursor:pointer;
+}
+.kpi:hover{border-color:#26374a;transform:translateY(-1px)}
+.kpi::after{content:'';position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent)}
+.kpi-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.kpi-label{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500;line-height:1.35}
+.kpi-icon{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none}
+.kpi-icon svg{width:14px;height:14px}
+.kpi-val{font-size:27px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.kpi-foot{font-size:11px;color:var(--dim);margin-top:8px;display:flex;align-items:center;gap:6px}
+.kpi-delta{font-size:10.5px;font-weight:600;padding:2px 6px;border-radius:5px}
+.up{color:var(--green);background:var(--green-bg)}
+.down{color:var(--red);background:var(--red-bg)}
+.t-green{color:var(--green)}.t-amber{color:var(--amber)}.t-red{color:var(--red)}
+.t-blue{color:var(--blue)}.t-violet{color:var(--violet)}.t-mute{color:var(--muted)}
+.bg-green{background:var(--green-bg);color:var(--green)}
+.bg-amber{background:var(--amber-bg);color:var(--amber)}
+.bg-red{background:var(--red-bg);color:var(--red)}
+.bg-blue{background:var(--blue-bg);color:var(--blue)}
+.bg-violet{background:var(--violet-bg);color:var(--violet)}
+
+/* ---------- filter bar ---------- */
+.filters{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:4px 0 18px}
+.pill{
+  height:32px;padding:0 14px;border-radius:999px;font-size:12.5px;font-weight:500;color:var(--muted);
+  display:inline-flex;align-items:center;gap:7px;transition:.15s;border:1px solid transparent;
+}
+.pill:hover{color:var(--text-2);background:rgba(255,255,255,.04)}
+.pill.on{background:var(--green-bg);color:var(--green);border-color:rgba(74,222,128,.22)}
+.pill.on-solid{background:var(--card-2);color:var(--text);border-color:var(--border)}
+.divider-v{width:1px;height:20px;background:var(--border);margin:0 6px}
+.select{
+  height:32px;padding:0 12px;border-radius:9px;background:var(--card);border:1px solid var(--border);
+  color:var(--text-2);font-size:12.5px;display:inline-flex;align-items:center;gap:9px;
+}
+.select svg{width:12px;height:12px;color:var(--dim)}
+
+/* ---------- client group ---------- */
+.group{margin-bottom:16px;border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  background:rgba(10,16,23,.5);overflow:hidden}
+.group-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:.15s}
+.group-head:hover{background:rgba(255,255,255,.018)}
+.chev{width:16px;height:16px;color:var(--dim);transition:transform .2s;flex:none}
+.group.collapsed .chev{transform:rotate(-90deg)}
+.group.collapsed .group-body{display:none}
+.client-mark{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;
+  background:var(--card-3);border:1px solid var(--border);color:var(--muted);flex:none}
+.client-mark svg{width:14px;height:14px}
+.group-name{font-size:15px;font-weight:600;letter-spacing:-.015em}
+.group-meta{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted)}
+.group-body{padding:0 12px 12px;display:flex;flex-direction:column;gap:9px}
+
+/* ---------- badges / chips ---------- */
+.badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:6px;
+  font-size:11px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.badge .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.chip{display:inline-flex;align-items:center;gap:5px;height:21px;padding:0 8px;border-radius:6px;
+  font-size:11px;font-weight:500;background:var(--card-3);color:var(--text-2);border:1px solid var(--border)}
+.size-chip{width:26px;height:21px;justify-content:center;font-weight:700;font-size:10.5px;letter-spacing:.02em;padding:0}
+.size-S{background:rgba(96,165,250,.13);color:#7cb8fb;border-color:rgba(96,165,250,.22)}
+.size-M{background:rgba(74,222,128,.12);color:#6ee7a0;border-color:rgba(74,222,128,.2)}
+.size-L{background:rgba(251,191,36,.12);color:#fbcd4e;border-color:rgba(251,191,36,.2)}
+.size-XL{background:rgba(167,139,250,.14);color:#b9a3fb;border-color:rgba(167,139,250,.24)}
+
+/* ---------- project card ---------- */
+.pcard{
+  background:var(--card);border:1px solid var(--border-soft);border-radius:var(--radius);
+  padding:15px 18px 14px;transition:.16s;cursor:pointer;position:relative;
+}
+.pcard:hover{border-color:#26374a;background:#0e161f}
+.pcard-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.pname{font-size:14.5px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.pclient{font-size:11.5px;color:var(--dim);margin-top:2px}
+.pcard-top-right{margin-left:auto;display:flex;align-items:center;gap:9px;flex:none}
+.arr{font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+.pcols{display:grid;grid-template-columns:minmax(320px,1.5fr) 1px minmax(260px,1.1fr) 1px 190px;
+  gap:18px;align-items:center}
+.divider-col{background:var(--border-soft);align-self:stretch}
+.col-label{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);
+  font-weight:600;margin-bottom:9px}
+
+/* ---------- mini timeline ---------- */
+.mtl{position:relative;height:34px}
+.mtl-line{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--border);border-radius:2px}
+.mtl-fill{position:absolute;left:0;top:9px;height:2px;background:linear-gradient(90deg,#1f7a45,var(--green));border-radius:2px}
+.mtl-over{position:absolute;top:9px;height:2px;background:repeating-linear-gradient(90deg,var(--red) 0 4px,transparent 4px 8px)}
+.mtl-node{position:absolute;top:4px;transform:translateX(-50%);cursor:default}
+.mtl-dot{width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--muted);
+  display:block;transition:.15s}
+.mtl-node.start .mtl-dot{border-color:var(--green);background:var(--green)}
+.mtl-node.proj .mtl-dot{border-color:var(--blue);width:11px;height:11px;border-radius:2px;transform:rotate(45deg);margin-top:.5px}
+.mtl-node.rev .mtl-dot{border-color:var(--amber);width:10px;height:10px;border-radius:2px;transform:rotate(45deg);margin-top:1px}
+.mtl-node.real .mtl-dot{border-color:var(--green);background:var(--green);box-shadow:0 0 0 3px rgba(74,222,128,.16)}
+.mtl-node.today .mtl-dot{width:2px;height:20px;border-radius:1px;background:#fff;border:none;margin-top:-4px;opacity:.55}
+.mtl-cap{position:absolute;top:19px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--muted);
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+.mtl-node:hover .mtl-dot{transform:scale(1.25) rotate(var(--rot,0deg))}
+.mtl-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted);margin-top:2px}
+
+/* tooltip */
+.tip{position:relative}
+.tip .tip-box{
+  position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
+  background:#111b26;border:1px solid #26374a;border-radius:10px;padding:10px 12px;width:250px;
+  font-size:11.5px;line-height:1.5;color:var(--text-2);opacity:0;pointer-events:none;transition:.16s;
+  box-shadow:0 12px 32px -10px rgba(0,0,0,.9);z-index:60;text-align:left;white-space:normal;font-weight:400;
+}
+.tip .tip-box b{display:block;color:var(--text);font-size:11px;margin-bottom:4px;font-weight:600}
+.tip .tip-box::after{content:'';position:absolute;top:100%;left:50%;margin-left:-5px;
+  border:5px solid transparent;border-top-color:#26374a}
+.tip:hover .tip-box{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- status column ---------- */
+.status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stat-mini{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:8px;
+  background:var(--card-2);border:1px solid var(--border-soft);font-size:11.5px;color:var(--text-2)}
+.stat-mini b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--text)}
+.stat-mini svg{width:12px;height:12px}
+.phase-pill{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px;border-radius:8px;
+  background:var(--card-3);border:1px solid var(--border);font-size:11.5px;font-weight:500}
+.owners{display:flex;align-items:center}
+.ava{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:9.5px;font-weight:600;
+  border:1.5px solid var(--card);margin-left:-6px}
+.ava:first-child{margin-left:0}
+.ava-1{background:#2b4b3a;color:#9fd8b4}.ava-2{background:#2b3d55;color:#a5c8f5}
+.ava-3{background:#4a3a58;color:#cbb0f0}.ava-4{background:#54432b;color:#f0d29a}
+
+/* ---------- project detail ---------- */
+.crumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding:22px 0 12px}
+.crumb a:hover{color:var(--text)}
+.crumb svg{width:12px;height:12px;color:var(--dim)}
+.phead{display:flex;align-items:flex-start;gap:18px;padding-bottom:18px;flex-wrap:wrap}
+.phead h1{font-size:22px;font-weight:600;letter-spacing:-.025em;margin:0 0 6px}
+.phead-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.phead-actions{margin-left:auto;display:flex;gap:9px;align-items:center}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:24px;overflow-x:auto}
+.tab{padding:11px 16px;font-size:13px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;
+  transition:.15s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;margin-bottom:-1px}
+.tab:hover{color:var(--text-2)}
+.tab.on{color:var(--green);border-bottom-color:var(--green)}
+.tab .cnt{font-size:10.5px;background:var(--card-3);color:var(--muted);border-radius:5px;padding:1px 6px;font-weight:600}
+.tab.on .cnt{background:var(--green-bg);color:var(--green)}
+
+/* ---------- generic panels ---------- */
+.grid{display:grid;gap:14px}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+.g-5{grid-template-columns:repeat(5,1fr)}
+.g-main{grid-template-columns:1.62fr 1fr}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:18px 20px 20px;box-shadow:var(--shadow)}
+.panel-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.panel-title{font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.panel-title .sub{font-weight:400;color:var(--dim);font-size:11.5px;margin-left:8px}
+.panel-actions{margin-left:auto;display:flex;gap:7px;align-items:center}
+.stat-card{background:linear-gradient(180deg,var(--card),#0a1017);border:1px solid var(--border);
+  border-radius:var(--radius);padding:15px 16px}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.stat-big{font-size:24px;font-weight:600;letter-spacing:-.03em;margin-top:9px;line-height:1;font-variant-numeric:tabular-nums}
+.stat-note{font-size:11px;color:var(--dim);margin-top:7px}
+
+/* lists */
+.list{display:flex;flex-direction:column}
+.li{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--border-soft)}
+.li:last-child{border-bottom:none;padding-bottom:0}
+.li:first-child{padding-top:0}
+.li-title{font-size:12.8px;font-weight:500;line-height:1.45}
+.li-meta{font-size:11px;color:var(--dim);margin-top:3px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.cbx{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--dim);flex:none;margin-top:1px}
+.cbx.done{background:var(--green-deep);border-color:var(--green-deep);display:grid;place-items:center}
+.cbx.done svg{width:9px;height:9px;color:#04140a}
+.cbx.block{border-color:var(--red);background:var(--red-bg);display:grid;place-items:center}
+.cbx.block svg{width:9px;height:9px;color:var(--red)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:9.8px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
+  font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--border)}
+td{padding:12px;border-bottom:1px solid var(--border-soft);vertical-align:middle;color:var(--text-2)}
+tr:last-child td{border-bottom:none}
+tbody tr{transition:.13s}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+td.strong{color:var(--text);font-weight:500}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px}
+.num{font-variant-numeric:tabular-nums}
+
+/* health meter */
+.meter{height:6px;border-radius:3px;background:var(--card-3);overflow:hidden;margin-top:11px}
+.meter i{display:block;height:100%;border-radius:3px}
+.drivers{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.driver{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--muted)}
+.driver .bar{flex:1;height:4px;border-radius:2px;background:var(--card-3);overflow:hidden}
+.driver .bar i{display:block;height:100%;border-radius:2px}
+.driver .v{width:34px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-2);font-weight:500}
+
+/* ---------- big timeline ---------- */
+.btl-wrap{padding:38px 30px 26px;background:linear-gradient(180deg,#0b131c,#080e15);
+  border:1px solid var(--border);border-radius:var(--radius-lg);position:relative;overflow:visible}
+.btl{position:relative;height:104px;margin:0 22px}
+.btl-track{position:absolute;left:0;right:0;top:34px;height:3px;background:var(--border);border-radius:3px}
+.btl-done{position:absolute;top:34px;height:3px;background:linear-gradient(90deg,#166534,var(--green));border-radius:3px}
+.btl-slip{position:absolute;top:34px;height:3px;border-radius:3px;
+  background:repeating-linear-gradient(90deg,rgba(251,191,36,.9) 0 5px,transparent 5px 10px)}
+.btl-node{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:150px;margin-left:-75px}
+.btl-node .knob{width:16px;height:16px;border-radius:50%;background:var(--bg);border:2.5px solid var(--muted);
+  margin:28px auto 0;position:relative;z-index:2;transition:.18s}
+.btl-node.locked .knob{border-color:var(--blue);border-radius:3px;transform:rotate(45deg);width:14px;height:14px}
+.btl-node.start .knob{border-color:var(--green);background:var(--green)}
+.btl-node.rev .knob{border-color:var(--amber);border-radius:3px;transform:rotate(45deg);width:14px;height:14px}
+.btl-node.rev.current .knob{background:var(--amber);box-shadow:0 0 0 5px rgba(251,191,36,.14)}
+.btl-node.pending .knob{border-style:dashed;border-color:var(--dim)}
+.btl-node:hover .knob{transform:scale(1.18) rotate(var(--r,0deg))}
+.btl-node.locked:hover .knob,.btl-node.rev:hover .knob{transform:rotate(45deg) scale(1.18)}
+.btl-lab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  position:absolute;top:6px;left:0;right:0}
+.btl-date{font-size:12.5px;font-weight:600;margin-top:11px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.btl-src{font-size:10px;color:var(--dim);margin-top:3px;display:flex;align-items:center;justify-content:center;gap:4px}
+.btl-src svg{width:10px;height:10px}
+.today-marker{position:absolute;top:14px;bottom:34px;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35));z-index:1}
+.today-flag{position:absolute;top:0;transform:translateX(-50%);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:#93a3b4;background:var(--card-3);border:1px solid var(--border);
+  border-radius:5px;padding:2px 7px;white-space:nowrap}
+.btl-legend{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:20px;padding-top:16px;
+  border-top:1px solid var(--border-soft);font-size:11px;color:var(--muted)}
+.lg{display:flex;align-items:center;gap:7px}
+.lg i{width:9px;height:9px;border-radius:50%;display:block}
+.lg i.sq{border-radius:2px;transform:rotate(45deg)}
+
+/* phase bars */
+.phase-row{display:grid;grid-template-columns:150px 1fr 66px;gap:14px;align-items:center;padding:9px 0}
+.phase-name{font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:8px}
+.phase-bar{height:9px;border-radius:5px;background:var(--card-3);overflow:hidden;position:relative}
+.phase-bar i{display:block;height:100%;border-radius:5px}
+.phase-days{font-size:11.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+/* inline "add revision" form */
+.revform{margin-top:16px;border:1px dashed #2a3a4c;border-radius:var(--radius);padding:16px 18px;background:rgba(255,255,255,.012)}
+.revform.collapsed .revform-body{display:none}
+.revform-head{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-2);cursor:pointer}
+.revform-head svg{width:14px;height:14px;color:var(--amber)}
+.revform-body{margin-top:15px;display:grid;grid-template-columns:180px 1fr auto;gap:12px;align-items:flex-end}
+.field label{display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  font-weight:600;margin-bottom:7px}
+.input{height:36px;border-radius:9px;background:#080e15;border:1px solid var(--border);padding:0 12px;
+  font-size:12.5px;color:var(--text);width:100%;font-family:inherit}
+.input.ta{height:36px;line-height:34px}
+.hint{font-size:11px;color:var(--dim);margin-top:10px;display:flex;align-items:center;gap:6px}
+.hint svg{width:12px;height:12px;flex:none}
+
+/* summary card */
+.summary-box{background:linear-gradient(180deg,#0d1520,#0a1017);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px}
+.summary-box p{margin:0 0 11px;font-size:13px;line-height:1.65;color:var(--text-2)}
+.summary-box p:last-child{margin-bottom:0}
+.summary-box strong{color:var(--text);font-weight:600}
+.summary-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--dim);
+  margin-top:15px;padding-top:13px;border-top:1px solid var(--border-soft)}
+
+/* log feed */
+.feed{position:relative;padding-left:26px}
+.feed::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.feed-item{position:relative;padding-bottom:22px}
+.feed-item:last-child{padding-bottom:0}
+.feed-dot{position:absolute;left:-26px;top:4px;width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--dim)}
+.feed-dot.pub{border-color:var(--green);background:rgba(74,222,128,.2)}
+.feed-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+.feed-date{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.feed-body{background:var(--card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:14px 16px}
+.feed-body p{margin:0 0 9px;font-size:12.5px;line-height:1.62;color:var(--text-2)}
+.feed-body p:last-child{margin:0}
+.feed-body ul{margin:0 0 9px;padding-left:17px;font-size:12.5px;line-height:1.62;color:var(--text-2)}
+.feed-body li{margin-bottom:4px}
+.feed-foot{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:12px;padding-top:11px;
+  border-top:1px solid var(--border-soft);font-size:11px;color:var(--dim)}
+
+/* docs */
+.doc-row{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:10px;
+  border:1px solid var(--border-soft);background:var(--card);margin-bottom:8px;transition:.15s}
+.doc-row:hover{border-color:#26374a;background:#0e161f}
+.doc-row.missing{border-style:dashed;border-color:rgba(248,113,113,.34);background:rgba(248,113,113,.035)}
+.doc-ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none;
+  background:var(--card-3);border:1px solid var(--border)}
+.doc-ic svg{width:16px;height:16px}
+.doc-name{font-size:13px;font-weight:500}
+.doc-meta{font-size:11px;color:var(--dim);margin-top:2px}
+.doc-right{margin-left:auto;display:flex;align-items:center;gap:9px}
+.dropzone{border:1px dashed #263646;border-radius:var(--radius);padding:26px;text-align:center;
+  color:var(--muted);font-size:12.5px;background:rgba(255,255,255,.012);transition:.15s}
+.dropzone:hover{border-color:var(--green-deep);color:var(--text-2);background:var(--green-bg)}
+.dropzone svg{width:22px;height:22px;color:var(--dim);margin-bottom:9px}
+.cta-card{border:1px solid rgba(74,222,128,.24);background:linear-gradient(135deg,rgba(74,222,128,.07),rgba(74,222,128,.015));
+  border-radius:var(--radius);padding:17px 19px;display:flex;align-items:center;gap:15px}
+.cta-card svg.big{width:26px;height:26px;color:var(--green);flex:none}
+
+/* misc */
+.note{font-size:11.5px;color:var(--dim);line-height:1.6}
+.kv{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0;
+  border-bottom:1px solid var(--border-soft);font-size:12.5px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--muted)}
+.kv .v{color:var(--text);font-weight:500;text-align:right}
+.raci{display:inline-flex;width:20px;height:20px;border-radius:5px;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700}
+.hidden{display:none!important}
+.mt-14{margin-top:14px}.mt-20{margin-top:20px}.mt-24{margin-top:24px}
+.sec-title{font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--text-2);margin:26px 0 12px;
+  display:flex;align-items:center;gap:9px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border-soft)}
+
+@media (max-width:1360px){
+  .kpis{grid-template-columns:repeat(3,1fr)}
+  .pcols{grid-template-columns:1fr;gap:14px}
+  .divider-col{display:none}
+  .g-main{grid-template-columns:1fr}
+  .g-4,.g-5{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:820px){
+  .wrap{padding:0 16px 60px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .g-2,.g-3,.g-4,.g-5{grid-template-columns:1fr}
+  .revform-body{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="mock-banner">
+  <b>Mockup</b><span class="sep">•</span> Octo Customer Solutions redesign <span class="sep">•</span> v1 — for review
+</div>
+
+<!-- ============ LEFT RAIL ============ -->
+<nav class="rail">
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="9" r="5"/><path d="M8 14c-1 3-3 4-4 6M16 14c1 3 3 4 4 6M11 15c-.5 3-1 4-1 6M13 15c.5 3 1 4 1 6"/>
+    </svg>
+  </div>
+  <div class="rail-nav">
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 4v16M17 4v16M2 12h20"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0M12 17v4"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8A3 3 0 1 1 7 13"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div class="rail-btn on" title="Customer Solutions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M14.9 9.1l4.2-4.2M9.1 14.9l-4.2 4.2"/></svg></div>
+    <div class="rail-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+  </div>
+  <div class="avatar-sm">MM</div>
+</nav>
+
+<div class="app"><div class="wrap">
+
+<!-- ================================================================
+     VIEW 1 — LANDING PAGE
+     ================================================================ -->
+<section id="view-landing" class="view">
+
+  <div class="topbar">
+    <div>
+      <h1 class="page-title">Customer Solutions</h1>
+      <div class="page-sub">11 projects &middot; 7 in deployment &middot; 4 live</div>
+    </div>
+    <div class="topbar-actions">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        Search projects…
+      </div>
+      <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg>Insights</button>
+      <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Refresh all AI summaries</button>
+      <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>New project</button>
+    </div>
+  </div>
+
+  <!-- KPI TILES -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label">$ ARR<br>being deployed</div>
+        <div class="kpi-icon bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      </div>
+      <div class="kpi-val t-green">$3.36M</div>
+      <div class="kpi-foot">Across 7 active projects</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label">$ ARR expected<br>live this quarter</div>
+        <div class="kpi-icon bg-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+      </div>
+      <div class="kpi-val t-violet">$2.53M</div>
+      <div class="kpi-foot">Q3 2026 &middot; <span class="kpi-delta down">−$180K vs. last week</span></div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label">Avg. time<br>remaining</div>
+        <div class="kpi-icon bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      </div>
+      <div class="kpi-val">58 <span style="font-size:14px;color:var(--muted);font-weight:400">days</span></div>
+      <div class="kpi-foot">Latest projected end − today</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label"># of live<br>deployments</div>
+        <div class="kpi-icon bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+      </div>
+      <div class="kpi-val">4</div>
+      <div class="kpi-foot">$815K ARR live &middot; <span class="kpi-delta up">+2 YTD</span></div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label"># healthy</div>
+        <div class="kpi-icon bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+      </div>
+      <div class="kpi-val t-green">3</div>
+      <div class="kpi-foot">On Track &middot; of 7 active</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-label"># unhealthy</div>
+        <div class="kpi-icon bg-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+      </div>
+      <div class="kpi-val t-red">4</div>
+      <div class="kpi-foot"><span class="t-amber">2 At Risk</span> &middot; <span class="t-red">2 Off Track</span></div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="pill on">All</button>
+    <button class="pill">Not Started</button>
+    <button class="pill">In Deployment</button>
+    <button class="pill">Live</button>
+    <button class="pill">On Hold</button>
+    <button class="pill">Churned</button>
+    <div class="divider-v"></div>
+    <button class="pill on-solid">All health</button>
+    <button class="pill">On Track</button>
+    <button class="pill">At Risk</button>
+    <button class="pill">Off Track</button>
+    <div class="divider-v"></div>
+    <div class="select">All phases <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="select">All sizes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="select">Sort: Latest end date <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+    <button class="pill on" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Grouped by client</button>
+  </div>
+
+  <div id="groups"></div>
+
+  <div class="note mt-24" style="text-align:center;padding-top:12px">
+    Progress bars replaced with a project timeline &middot; every row answers <em>how long</em>, <em>what needs to be done</em>, <em>who owns it</em>, <em>how big</em>, and <em>why it slipped</em>.
+  </div>
+</section>
+
+
+<!-- ================================================================
+     PROJECT DETAIL SHELL
+     ================================================================ -->
+<section id="view-project" class="view hidden">
+
+  <div class="crumb">
+    <a href="#/" onclick="go('landing')">Customer Solutions</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    <a href="#/">CBRE</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    <span style="color:var(--text-2)">Cyber Security Reports</span>
+  </div>
+
+  <div class="phead">
+    <div>
+      <h1>CBRE (IT/OT) — Cyber Security Reports</h1>
+      <div class="phead-meta">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> CBRE</span>
+        <span class="chip size-chip size-XL">XL</span>
+        <span class="chip">$1,800,000 ARR</span>
+        <span class="badge bg-amber"><span class="dot"></span>At Risk</span>
+        <span class="chip">Phase: Build</span>
+        <span style="color:var(--dim)">Updated 5h ago by Mike McGugan</span>
+      </div>
+    </div>
+    <div class="phead-actions">
+      <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>Share</button>
+      <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg>Generate summary</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="overview" onclick="tab('overview')">Project Overview</button>
+    <button class="tab" data-tab="timeline" onclick="tab('timeline')">Timeline <span class="cnt">2 rev</span></button>
+    <button class="tab" data-tab="tasks" onclick="tab('tasks')">Tasks <span class="cnt">14</span></button>
+    <button class="tab" data-tab="log" onclick="tab('log')">Summary Log <span class="cnt">6</span></button>
+    <button class="tab" data-tab="docs" onclick="tab('docs')">Documentation <span class="cnt t-red">1 missing</span></button>
+  </div>
+
+  <!-- ============================================================
+       TAB — PROJECT OVERVIEW
+       ============================================================ -->
+  <div id="tab-overview" class="tabpane">
+
+    <div class="grid g-5">
+      <div class="stat-card">
+        <div class="stat-label">Size — $ ARR</div>
+        <div class="stat-big">$1.80M</div>
+        <div class="stat-note">Largest active engagement</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Size — T-shirt</div>
+        <div class="stat-big t-violet">XL</div>
+        <div class="stat-note">Enterprise &middot; set at scoping</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Current phase</div>
+        <div class="stat-big" style="font-size:19px">Build</div>
+        <div class="stat-note">Day 68 of phase &middot; longest to date</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Time remaining</div>
+        <div class="stat-big t-amber">23 <span style="font-size:13px;color:var(--muted);font-weight:400">days</span></div>
+        <div class="stat-note">To revised end date, Aug 14</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Missing docs</div>
+        <div class="stat-big t-red">1</div>
+        <div class="stat-note">Kickoff call transcript</div>
+      </div>
+    </div>
+
+    <div class="grid g-main mt-20">
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <!-- timeline strip -->
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Timeline <span class="sub">Start → projected → revised → real</span></div>
+            <div class="panel-actions">
+              <span class="badge bg-amber"><span class="dot"></span>45 days over original</span>
+              <button class="btn btn-sm" onclick="tab('timeline')">Edit timeline
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div class="mtl" style="height:44px;margin:8px 12px 4px">
+            <div class="mtl-line"></div>
+            <div class="mtl-fill" style="width:60%"></div>
+            <div class="mtl-over" style="left:60%;width:40%"></div>
+            <div class="mtl-node start tip" style="left:0"><span class="mtl-dot"></span><span class="mtl-cap">Mar 3</span>
+              <div class="tip-box" style="left:0;transform:none"><b>Start date — locked</b>Auto-derived from kickoff call logged in Slack, #rev-client-cbre, Mar 3 2026.</div></div>
+            <div class="mtl-node proj tip" style="left:38%"><span class="mtl-dot"></span><span class="mtl-cap">Jun 30</span>
+              <div class="tip-box"><b>Projected end — locked</b>Set at scoping. Never changes; revisions are added alongside it.</div></div>
+            <div class="mtl-node rev tip" style="left:60%"><span class="mtl-dot"></span><span class="mtl-cap">Jul 24</span>
+              <div class="tip-box"><b>Revision 1 — May 12</b>CBRE security review added 3 weeks of access provisioning before we could reach the OT network.</div></div>
+            <div class="mtl-node rev tip" style="left:80%"><span class="mtl-dot"></span><span class="mtl-cap">Aug 14</span>
+              <div class="tip-box"><b>Revision 2 — Jun 30</b>Smartsheet API account is tied to a departed employee. Migration to an Outcome service account blocks the 16-building rollout.</div></div>
+            <div class="mtl-node real tip" style="left:100%"><span class="mtl-dot" style="background:var(--bg);border-color:var(--dim);border-style:dashed;box-shadow:none"></span><span class="mtl-cap" style="color:var(--dim)">Real end</span>
+              <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date — pending</b>Auto-filled when the deployment email is detected in Gmail or Slack.</div></div>
+            <div class="mtl-node today" style="left:71%"><span class="mtl-dot"></span></div>
+          </div>
+          <div class="btl-legend" style="margin-top:14px;padding-top:12px">
+            <span class="lg"><i style="background:var(--green)"></i>Start</span>
+            <span class="lg"><i class="sq" style="background:var(--blue)"></i>Projected (locked)</span>
+            <span class="lg"><i class="sq" style="background:var(--amber)"></i>Revised — hover for rationale</span>
+            <span class="lg"><i style="background:var(--dim)"></i>Real end (auto)</span>
+            <span class="lg" style="margin-left:auto"><i style="background:#fff;opacity:.5;width:2px;height:11px;border-radius:1px"></i>Today</span>
+          </div>
+        </div>
+
+        <!-- generated summary -->
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Current status summary <span class="sub">generated from Tasks + Timeline</span></div>
+            <div class="panel-actions">
+              <button class="btn btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Regenerate</button>
+              <button class="btn btn-sm btn-primary">Publish to log</button>
+            </div>
+          </div>
+          <div class="summary-box">
+            <p><strong>Build is 68 days in — the longest single phase on this project</strong> and the reason both end-date revisions were filed. Report generation logic for the 3 pilot buildings is complete and passing QA; the blocker is access, not code.</p>
+            <p>Two blockers are open. The Smartsheet API token still runs on a departed employee's personal account, which cannot be carried into the 16-building rollout. CBRE's IT/OT security review has not returned VPN credentials for the remaining 13 sites.</p>
+            <p><strong>Recommended call:</strong> escalate the service-account migration to CBRE IT this week. If credentials land by Jul 29 the Aug 14 revised date holds; past that a third revision is likely.</p>
+            <div class="summary-meta">
+              <span class="badge bg-blue"><span class="dot"></span>Draft — not yet published</span>
+              <span>Generated Jul 22, 2026 · 9:14 AM CDT</span>
+              <span>·</span>
+              <span>Sources: 14 tasks, 2 timeline revisions, 3 Slack threads</span>
+              <span style="margin-left:auto" class="t-amber">Human review required before publishing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- todos + blockers -->
+        <div class="grid g-2">
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Immediate to-dos <span class="sub">4 open</span></div>
+              <div class="panel-actions"><button class="btn btn-sm btn-ghost" onclick="tab('tasks')">All tasks →</button></div>
+            </div>
+            <div class="list">
+              <div class="li"><span class="cbx"></span><div><div class="li-title">Send service-account migration request to CBRE IT</div>
+                <div class="li-meta"><span class="badge bg-violet" style="height:19px">CS</span><span class="ava ava-1" style="width:18px;height:18px;font-size:8.5px">MM</span> Mike McGugan <span>·</span> Due Jul 23</div></div></div>
+              <div class="li"><span class="cbx"></span><div><div class="li-title">Finish severity-mapping rules for Building 4–7 report template</div>
+                <div class="li-meta"><span class="badge bg-blue" style="height:19px">DEV</span><span class="mono t-mute">OUT-412</span><span class="ava ava-2" style="width:18px;height:18px;font-size:8.5px">AR</span> Aryan R. <span>·</span> Due Jul 25</div></div></div>
+              <div class="li"><span class="cbx"></span><div><div class="li-title">Confirm Smartsheet column schema unchanged for rollout buildings</div>
+                <div class="li-meta"><span class="badge bg-blue" style="height:19px">DEV</span><span class="mono t-mute">OUT-418</span><span class="ava ava-3" style="width:18px;height:18px;font-size:8.5px">SD</span> Sid <span>·</span> Due Jul 28</div></div></div>
+              <div class="li"><span class="cbx"></span><div><div class="li-title">Schedule Aug rollout readiness review with CBRE</div>
+                <div class="li-meta"><span class="badge bg-violet" style="height:19px">CS</span><span class="ava ava-1" style="width:18px;height:18px;font-size:8.5px">MM</span> Mike McGugan <span>·</span> Due Jul 30</div></div></div>
+            </div>
+          </div>
+
+          <div class="panel" style="border-color:rgba(248,113,113,.24)">
+            <div class="panel-head">
+              <div class="panel-title">Blockers <span class="sub">2 flagged</span></div>
+              <div class="panel-actions"><span class="badge bg-red"><span class="dot"></span>Driving slippage</span></div>
+            </div>
+            <div class="list">
+              <div class="li"><span class="cbx block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                <div><div class="li-title">Smartsheet API token tied to departed employee's personal account</div>
+                <div class="li-meta"><span class="badge bg-red" style="height:19px">Blocked 21d</span><span class="mono t-mute">OUT-401</span> Waiting on: CBRE IT</div></div></div>
+              <div class="li"><span class="cbx block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                <div><div class="li-title">VPN credentials outstanding for 13 of 16 rollout buildings</div>
+                <div class="li-meta"><span class="badge bg-red" style="height:19px">Blocked 34d</span><span class="badge bg-violet" style="height:19px">CS</span> Waiting on: CBRE IT/OT security review</div></div></div>
+            </div>
+            <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+              Blockers are the <code>blocker</code> flag on any Dev or CS task — same tag Linear already uses.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right column -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Health score</div>
+            <div class="panel-actions"><span class="badge bg-amber"><span class="dot"></span>At Risk</span></div></div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font-size:38px;font-weight:600;letter-spacing:-.04em" class="t-amber">54</div>
+            <div style="font-size:13px;color:var(--muted)">/ 100</div>
+            <div style="margin-left:auto;font-size:11px" class="t-red">▼ 12 since Jun 30</div>
+          </div>
+          <div class="meter"><i style="width:54%;background:linear-gradient(90deg,#b45309,var(--amber))"></i></div>
+          <div class="drivers">
+            <div class="driver"><span style="width:96px">Schedule</span><span class="bar"><i style="width:28%;background:var(--red)"></i></span><span class="v">28</span></div>
+            <div class="driver"><span style="width:96px">Blockers</span><span class="bar"><i style="width:35%;background:var(--red)"></i></span><span class="v">35</span></div>
+            <div class="driver"><span style="width:96px">Task velocity</span><span class="bar"><i style="width:71%;background:var(--amber)"></i></span><span class="v">71</span></div>
+            <div class="driver"><span style="width:96px">Documentation</span><span class="bar"><i style="width:75%;background:var(--amber)"></i></span><span class="v">75</span></div>
+            <div class="driver"><span style="width:96px">Client engagement</span><span class="bar"><i style="width:82%;background:var(--green)"></i></span><span class="v">82</span></div>
+          </div>
+          <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>Scoring weights TBD — defined as a group.</div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">RACI</div>
+            <div class="panel-actions"><button class="btn btn-sm btn-ghost">Edit</button></div></div>
+          <table>
+            <thead><tr><th>Person</th><th>Role</th><th style="text-align:right">RACI</th></tr></thead>
+            <tbody>
+              <tr><td class="strong"><span class="ava ava-1" style="width:19px;height:19px;font-size:9px;margin-right:7px">MM</span>Mike McGugan</td><td>Customer Solutions</td><td style="text-align:right"><span class="raci bg-green">A</span></td></tr>
+              <tr><td class="strong"><span class="ava ava-2" style="width:19px;height:19px;font-size:9px;margin-right:7px">AR</span>Aryan R.</td><td>Engineering</td><td style="text-align:right"><span class="raci bg-blue">R</span></td></tr>
+              <tr><td class="strong"><span class="ava ava-3" style="width:19px;height:19px;font-size:9px;margin-right:7px">SD</span>Sid</td><td>Platform</td><td style="text-align:right"><span class="raci bg-blue">R</span></td></tr>
+              <tr><td class="strong"><span class="ava ava-4" style="width:19px;height:19px;font-size:9px;margin-right:7px">AN</span>Andrew</td><td>Delivery Lead</td><td style="text-align:right"><span class="raci bg-amber">C</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Client stakeholders <span class="sub">from HubSpot</span></div></div>
+          <div class="list">
+            <div class="li" style="align-items:center"><span class="ava ava-4" style="width:26px;height:26px;font-size:10px">DK</span>
+              <div><div class="li-title">Dave K.</div><div class="li-meta">Director, IT/OT Security · Economic buyer</div></div></div>
+            <div class="li" style="align-items:center"><span class="ava ava-2" style="width:26px;height:26px;font-size:10px">PR</span>
+              <div><div class="li-title">Priya R.</div><div class="li-meta">Program Manager · Day-to-day contact</div></div></div>
+            <div class="li" style="align-items:center"><span class="ava ava-3" style="width:26px;height:26px;font-size:10px">TL</span>
+              <div><div class="li-title">Tom L.</div><div class="li-meta">Building Systems Lead · Technical reviewer</div></div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">At a glance</div></div>
+          <div class="kv"><span class="k">Start date</span><span class="v num">Mar 3, 2026</span></div>
+          <div class="kv"><span class="k">Projected end (locked)</span><span class="v num">Jun 30, 2026</span></div>
+          <div class="kv"><span class="k">Latest revised end</span><span class="v num t-amber">Aug 14, 2026</span></div>
+          <div class="kv"><span class="k">Revisions</span><span class="v">2</span></div>
+          <div class="kv"><span class="k">Time overrun</span><span class="v t-red">+45 days</span></div>
+          <div class="kv"><span class="k">Linear project</span><span class="v"><span class="mono t-blue">OUT · CBRE ITOT</span></span></div>
+          <div class="kv"><span class="k">Last published update</span><span class="v num">Jul 15, 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB — TIMELINE
+       ============================================================ -->
+  <div id="tab-timeline" class="tabpane hidden">
+
+    <div class="grid g-4" style="margin-bottom:16px">
+      <div class="stat-card"><div class="stat-label">Original duration</div><div class="stat-big num">119 <span style="font-size:13px;color:var(--muted);font-weight:400">days</span></div><div class="stat-note">Mar 3 → Jun 30</div></div>
+      <div class="stat-card"><div class="stat-label">Current duration</div><div class="stat-big num t-amber">164 <span style="font-size:13px;color:var(--muted);font-weight:400">days</span></div><div class="stat-note">Mar 3 → Aug 14 (revised)</div></div>
+      <div class="stat-card"><div class="stat-label">Time overrun</div><div class="stat-big t-red">+45 <span style="font-size:13px;color:var(--muted);font-weight:400">days</span></div><div class="stat-note">+38% vs. original scope</div></div>
+      <div class="stat-card"><div class="stat-label">Revisions filed</div><div class="stat-big">2</div><div class="stat-note">Each requires a rationale</div></div>
+    </div>
+
+    <div class="btl-wrap">
+      <div class="btl">
+        <div class="btl-track"></div>
+        <div class="btl-done" style="left:0;width:58%"></div>
+        <div class="btl-slip" style="left:58%;width:42%"></div>
+
+        <div class="today-marker" style="left:70%"></div>
+        <div class="today-flag" style="left:70%">Today · Jul 22</div>
+
+        <div class="btl-node start" style="left:0">
+          <div class="btl-lab">Start date</div><div class="knob"></div>
+          <div class="btl-date">Mar 3, 2026</div>
+          <div class="btl-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Kickoff call · Slack</div>
+        </div>
+
+        <div class="btl-node locked tip" style="left:39%">
+          <div class="btl-lab">Projected end</div><div class="knob"></div>
+          <div class="btl-date">Jun 30, 2026</div>
+          <div class="btl-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Locked at scoping</div>
+          <div class="tip-box"><b>Locked</b>Set once during scoping and never edited. All slippage is recorded as revisions so overrun stays measurable.</div>
+        </div>
+
+        <div class="btl-node rev tip" style="left:58%">
+          <div class="btl-lab t-amber">Revision 1</div><div class="knob"></div>
+          <div class="btl-date">Jul 24, 2026</div>
+          <div class="btl-src">Filed May 12 · +24d</div>
+          <div class="tip-box"><b>Rationale — Mike McGugan, May 12</b>CBRE security review added roughly 3 weeks of access provisioning before we could reach the OT network. Client-side dependency, not scope change.</div>
+        </div>
+
+        <div class="btl-node rev current tip" style="left:79%">
+          <div class="btl-lab t-amber">Revision 2 · current</div><div class="knob"></div>
+          <div class="btl-date t-amber">Aug 14, 2026</div>
+          <div class="btl-src">Filed Jun 30 · +21d</div>
+          <div class="tip-box"><b>Rationale — Mike McGugan, Jun 30</b>Smartsheet API account is tied to a departed employee. Migrating to an Outcome service account is a hard prerequisite for the 16-building rollout.</div>
+        </div>
+
+        <div class="btl-node pending tip" style="left:100%">
+          <div class="btl-lab">Real end date</div><div class="knob"></div>
+          <div class="btl-date" style="color:var(--dim)">Pending</div>
+          <div class="btl-src">Auto · deployment email</div>
+          <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date</b>Filled automatically when the "use case deployed" email is detected in Gmail or the client Slack channel.</div>
+        </div>
+      </div>
+
+      <div class="revform collapsed" id="revform">
+        <div class="revform-head" onclick="document.getElementById('revform').classList.toggle('collapsed')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <strong style="font-weight:600;color:var(--text)">Add revised end date</strong>
+          <span style="color:var(--dim)">— rationale is required; it appears on hover and in the revision history below</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:auto;color:var(--dim)"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="revform-body">
+          <div class="field"><label>New end date</label><input class="input" type="text" value="2026-09-11" /></div>
+          <div class="field"><label>Rationale (free text, required)</label><input class="input" type="text" placeholder="Why is the date moving? e.g. client dependency, scope change, resourcing…" /></div>
+          <button class="btn btn-primary" style="height:36px">File revision</button>
+        </div>
+      </div>
+
+      <div class="btl-legend">
+        <span class="lg"><i style="background:var(--green)"></i>Start — auto-derived, locked</span>
+        <span class="lg"><i class="sq" style="background:var(--blue)"></i>Projected end — locked at scoping</span>
+        <span class="lg"><i class="sq" style="background:var(--amber)"></i>Revised end — hover for rationale</span>
+        <span class="lg"><i style="background:var(--dim)"></i>Real end — auto from deployment email</span>
+        <span class="lg"><i style="background:transparent;width:16px;height:3px;border-radius:2px;background-image:repeating-linear-gradient(90deg,var(--amber) 0 4px,transparent 4px 8px)"></i>Overrun</span>
+      </div>
+    </div>
+
+    <div class="grid g-main mt-20">
+      <div class="panel">
+        <div class="panel-head"><div class="panel-title">Revision history <span class="sub">every date change, with rationale</span></div>
+          <div class="panel-actions"><button class="btn btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M8 10l4 4 4-4M12 14V2"/></svg>Export</button></div></div>
+        <table>
+          <thead><tr><th>Filed</th><th>From</th><th>To</th><th>Δ</th><th>Rationale</th><th>By</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="num">Jun 30, 2026</td><td class="num">Jul 24</td><td class="num strong t-amber">Aug 14</td><td class="t-red num">+21d</td>
+              <td>Smartsheet API account tied to a departed employee — service-account migration is a hard prerequisite for the 16-building rollout.</td>
+              <td>Mike McGugan</td>
+            </tr>
+            <tr>
+              <td class="num">May 12, 2026</td><td class="num">Jun 30</td><td class="num strong">Jul 24</td><td class="t-red num">+24d</td>
+              <td>CBRE IT/OT security review added ~3 weeks of access provisioning before we could reach the OT network.</td>
+              <td>Mike McGugan</td>
+            </tr>
+            <tr>
+              <td class="num">Mar 3, 2026</td><td class="t-mute">—</td><td class="num strong">Jun 30</td><td class="t-mute">baseline</td>
+              <td>Original projected end date set at scoping. Locked.</td>
+              <td>Mike McGugan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><div class="panel-title">Time in phase <span class="sub">why it's slower</span></div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge bg-green" style="height:19px">Done</span>Discovery</div>
+          <div class="phase-bar"><i style="width:16%;background:var(--green)"></i></div><div class="phase-days">18d</div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge bg-green" style="height:19px">Done</span>PRD Sign-Off</div>
+          <div class="phase-bar"><i style="width:21%;background:var(--green)"></i></div><div class="phase-days">24d</div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge bg-amber" style="height:19px">Now</span>Build</div>
+          <div class="phase-bar"><i style="width:100%;background:linear-gradient(90deg,#b45309,var(--amber))"></i></div><div class="phase-days t-amber">68d</div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge" style="height:19px;background:var(--card-3);color:var(--dim)">Next</span>QA / Testing</div>
+          <div class="phase-bar"><i style="width:12%;background:var(--card-3);border:1px dashed #2a3a4c"></i></div><div class="phase-days t-mute">est. 14d</div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge" style="height:19px;background:var(--card-3);color:var(--dim)">Next</span>Customer Iteration / UAT</div>
+          <div class="phase-bar"><i style="width:18%;background:var(--card-3);border:1px dashed #2a3a4c"></i></div><div class="phase-days t-mute">est. 21d</div></div>
+        <div class="phase-row"><div class="phase-name"><span class="badge" style="height:19px;background:var(--card-3);color:var(--dim)">Next</span>Live</div>
+          <div class="phase-bar"><i style="width:5%;background:var(--card-3);border:1px dashed #2a3a4c"></i></div><div class="phase-days t-mute">—</div></div>
+        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+          Build has consumed 62% of elapsed project time. Open blockers in this phase are what both revisions point to.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB — TASKS
+       ============================================================ -->
+  <div id="tab-tasks" class="tabpane hidden">
+
+    <div class="grid g-4" style="margin-bottom:16px">
+      <div class="stat-card"><div class="stat-label">Open tasks</div><div class="stat-big">14</div><div class="stat-note">9 Dev · 5 CS</div></div>
+      <div class="stat-card"><div class="stat-label">Blocked</div><div class="stat-big t-red">2</div><div class="stat-note">Avg. 27 days blocked</div></div>
+      <div class="stat-card"><div class="stat-label">Closed last 14d</div><div class="stat-big t-green">11</div><div class="stat-note">Velocity steady</div></div>
+      <div class="stat-card"><div class="stat-label">Unassigned</div><div class="stat-big t-amber">1</div><div class="stat-note">Needs an owner</div></div>
+    </div>
+
+    <div class="panel" style="padding-bottom:12px">
+      <div class="panel-head">
+        <div class="panel-title">Tasks</div>
+        <div class="panel-actions">
+          <span class="badge bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/></svg>Two-way sync with Linear · 4m ago</span>
+          <button class="btn btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New CS task</button>
+          <button class="btn btn-sm btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg>Generate summary</button>
+        </div>
+      </div>
+
+      <div class="filters" style="padding:0 0 14px">
+        <button class="pill on">All <span style="opacity:.6">14</span></button>
+        <button class="pill">Dev <span style="opacity:.6">9</span></button>
+        <button class="pill">CS <span style="opacity:.6">5</span></button>
+        <button class="pill">Blocked <span style="opacity:.6">2</span></button>
+        <button class="pill">Unassigned <span style="opacity:.6">1</span></button>
+        <div class="divider-v"></div>
+        <div class="select">All phases <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="select">All assignees <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+
+      <table>
+        <thead><tr><th style="width:34px"></th><th>Task</th><th style="width:74px">Type</th><th style="width:130px">Ref</th><th style="width:160px">Assignee</th><th style="width:120px">Phase</th><th style="width:96px">Due</th><th style="width:110px">Status</th></tr></thead>
+        <tbody id="taskbody"></tbody>
+      </table>
+    </div>
+
+    <div class="grid g-2 mt-20">
+      <div class="panel">
+        <div class="panel-head"><div class="panel-title">Where tasks come from</div></div>
+        <div class="list">
+          <div class="li" style="align-items:center"><span class="badge bg-blue" style="height:24px;padding:0 10px">DEV</span>
+            <div><div class="li-title">Created in Linear, synced into Octo</div>
+              <div class="li-meta">Two-way sync. Linear keeps the granular sub-tasks; Octo shows the project-level task, assignee, and blocker flag.</div></div></div>
+          <div class="li" style="align-items:center"><span class="badge bg-violet" style="height:24px;padding:0 10px">CS</span>
+            <div><div class="li-title">Created in Octo by Customer Solutions</div>
+              <div class="li-meta">Kickoff scheduling, client emails, PRD sign-off chasing — work that never belonged in Linear but has to be in the summary.</div></div></div>
+        </div>
+        <div class="hint mt-14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+          The generated summary is only accurate when both Dev and CS context are present. That's why CS tasks live here.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><div class="panel-title">Blocker flag</div>
+          <div class="panel-actions"><span class="badge bg-red"><span class="dot"></span>2 active</span></div></div>
+        <p class="note" style="margin:0 0 14px">Any task — Dev or CS — can carry a <strong style="color:var(--text)">blocker</strong> flag. Flagged tasks surface on the landing page, on Project Overview, and feed the health score. Mirrors the existing Linear blocker label.</p>
+        <div class="doc-row missing" style="margin-bottom:8px">
+          <div class="doc-ic" style="border-color:rgba(248,113,113,.3)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></div>
+          <div><div class="doc-name">OUT-401 · Smartsheet service-account migration</div><div class="doc-meta">Blocked 21 days · Waiting on CBRE IT</div></div>
+          <div class="doc-right"><span class="badge bg-red"><span class="dot"></span>Blocker</span></div>
+        </div>
+        <div class="doc-row missing">
+          <div class="doc-ic" style="border-color:rgba(248,113,113,.3)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></div>
+          <div><div class="doc-name">CS-88 · VPN credentials for 13 rollout buildings</div><div class="doc-meta">Blocked 34 days · Waiting on CBRE IT/OT security review</div></div>
+          <div class="doc-right"><span class="badge bg-red"><span class="dot"></span>Blocker</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB — SUMMARY LOG
+       ============================================================ -->
+  <div id="tab-log" class="tabpane hidden">
+
+    <div class="grid g-4" style="margin-bottom:16px">
+      <div class="stat-card"><div class="stat-label">Published updates</div><div class="stat-big">6</div><div class="stat-note">Since Mar 3, 2026</div></div>
+      <div class="stat-card"><div class="stat-label">Update cadence</div><div class="stat-big" style="font-size:19px">Weekly</div><div class="stat-note">Last: Jul 15 · 7 days ago</div></div>
+      <div class="stat-card"><div class="stat-label">Health at first update</div><div class="stat-big t-green">On Track</div><div class="stat-note">Mar 20, 2026</div></div>
+      <div class="stat-card"><div class="stat-label">Health now</div><div class="stat-big t-amber">At Risk</div><div class="stat-note">Downgraded May 8</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Status log <span class="sub">timestamped record of every published update</span></div>
+        <div class="panel-actions">
+          <div class="select">All of 2026 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <button class="btn btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M8 10l4 4 4-4M12 14V2"/></svg>Export log</button>
+        </div>
+      </div>
+
+      <div class="feed">
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">Jul 15, 2026 · 4:58 PM CDT</span>
+            <span class="badge bg-amber"><span class="dot"></span>At Risk</span>
+            <span class="chip">Phase: Build</span>
+            <span class="chip">Revised end: Aug 14</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>Report generation for pilot buildings 1–3 passed QA. All three produce a clean Smartsheet-ready output with severity mapping applied.</p>
+            <ul>
+              <li>Service-account migration request sent to CBRE IT — no response after 6 days.</li>
+              <li>VPN credentials still outstanding for 13 of 16 rollout buildings.</li>
+              <li>Aug 14 revised date holds only if credentials arrive by end of July.</li>
+            </ul>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 12 tasks · 1 timeline revision · 4 Slack threads</span>
+              <span style="margin-left:auto"><button class="btn btn-sm btn-ghost">View sources</button></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">Jun 30, 2026 · 5:02 PM CDT</span>
+            <span class="badge bg-amber"><span class="dot"></span>At Risk</span>
+            <span class="chip">Phase: Build</span>
+            <span class="badge bg-red"><span class="dot"></span>Revision 2 filed</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>End date revised from Jul 24 to <strong>Aug 14</strong>. The Smartsheet API token used for report delivery is tied to a departed employee's personal account — it cannot be carried into the 16-building rollout.</p>
+            <p>Build work on the report template continues in parallel and is not blocked by this.</p>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 10 tasks · 1 timeline revision</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">Jun 8, 2026 · 4:51 PM CDT</span>
+            <span class="badge bg-amber"><span class="dot"></span>At Risk</span>
+            <span class="chip">Phase: Build</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>Severity mapping logic finalized with Tom L. Building 1 report reviewed and approved by CBRE. Buildings 2–3 in progress.</p>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 8 tasks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">May 12, 2026 · 5:10 PM CDT</span>
+            <span class="badge bg-amber"><span class="dot"></span>At Risk</span>
+            <span class="chip">Phase: Build</span>
+            <span class="badge bg-red"><span class="dot"></span>Revision 1 filed</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>End date revised from Jun 30 to <strong>Jul 24</strong>. CBRE's IT/OT security review added roughly three weeks of access provisioning before we could reach the OT network.</p>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 7 tasks · 1 timeline revision</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">Apr 24, 2026 · 4:44 PM CDT</span>
+            <span class="badge bg-green"><span class="dot"></span>On Track</span>
+            <span class="chip">Phase: PRD Sign-Off → Build</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>PRD v2 signed off by CBRE. Moving into Build. Scope confirmed at 3 pilot buildings, then a 16-building rollout.</p>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 6 tasks · phase change</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-item">
+          <div class="feed-dot pub"></div>
+          <div class="feed-head">
+            <span class="feed-date">Mar 20, 2026 · 4:39 PM CDT</span>
+            <span class="badge bg-green"><span class="dot"></span>On Track</span>
+            <span class="chip">Phase: Discovery</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--dim)">Published by Mike McGugan</span>
+          </div>
+          <div class="feed-body">
+            <p>Kickoff complete. Sample cyber security reports received for 3 buildings. Drafting PRD v1.</p>
+            <div class="feed-foot">
+              <span class="badge bg-violet" style="height:19px">AI-generated</span>
+              <span class="badge bg-green" style="height:19px">Human-reviewed</span>
+              <span>Sources: 4 tasks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TAB — DOCUMENTATION
+       ============================================================ -->
+  <div id="tab-docs" class="tabpane hidden">
+
+    <div class="grid g-4" style="margin-bottom:16px">
+      <div class="stat-card"><div class="stat-label">Required docs</div><div class="stat-big">3 <span style="font-size:14px;color:var(--muted);font-weight:400">of 4</span></div><div class="stat-note t-red">1 missing — flagged on Overview</div></div>
+      <div class="stat-card"><div class="stat-label">Total documents</div><div class="stat-big">19</div><div class="stat-note">Across all categories</div></div>
+      <div class="stat-card"><div class="stat-label">Call transcripts</div><div class="stat-big">7</div><div class="stat-note">Auto-ingested from Fireflies</div></div>
+      <div class="stat-card"><div class="stat-label">Client emails</div><div class="stat-big">12</div><div class="stat-note">Linked from HubSpot</div></div>
+    </div>
+
+    <div class="cta-card" style="margin-bottom:22px">
+      <svg class="big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
+      <div style="flex:1">
+        <div style="font-size:13.5px;font-weight:600">Create PRD from uploaded documents</div>
+        <div class="note" style="margin-top:4px">Generates a first-draft PRD from the call transcripts, contract, and notes already attached to this project. Runs the PRD skill — output lands here as a draft for review.</div>
+      </div>
+      <button class="btn btn-primary">Create PRD draft</button>
+    </div>
+
+    <div class="sec-title">Required documents</div>
+    <div class="doc-row">
+      <div class="doc-ic" style="border-color:rgba(74,222,128,.28)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h3"/></svg></div>
+      <div><div class="doc-name">PRD — CBRE ITOT Cyber Security Report Rollout v2</div>
+        <div class="doc-meta">Google Doc · Uploaded May 2, 2026 by Mike McGugan · Also in Notion</div></div>
+      <div class="doc-right"><span class="badge bg-green"><span class="dot"></span>Complete</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic" style="border-color:rgba(74,222,128,.28)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 17l2 2 4-4"/></svg></div>
+      <div><div class="doc-name">Letter of Engagement — CBRE IT/OT</div>
+        <div class="doc-meta">PDF · Uploaded Mar 3, 2026 · Signed Feb 27, 2026</div></div>
+      <div class="doc-right"><span class="badge bg-green"><span class="dot"></span>Complete</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic" style="border-color:rgba(74,222,128,.28)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+      <div><div class="doc-name">Master Services Agreement — CBRE</div>
+        <div class="doc-meta">PDF · Uploaded Feb 27, 2026 · Contract value $1,800,000</div></div>
+      <div class="doc-right"><span class="badge bg-green"><span class="dot"></span>Complete</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row missing">
+      <div class="doc-ic" style="border-color:rgba(248,113,113,.32)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+      <div><div class="doc-name">Kickoff call transcript</div>
+        <div class="doc-meta t-red">Required · Missing since Mar 3, 2026 — flagged on Project Overview</div></div>
+      <div class="doc-right"><span class="badge bg-red"><span class="dot"></span>Missing</span><button class="btn btn-sm btn-primary">Upload</button></div>
+    </div>
+
+    <div class="sec-title">Call transcripts <span style="color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">auto-ingested from Fireflies</span></div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0M12 17v4"/></svg></div>
+      <div><div class="doc-name">CBRE IT/OT — Rollout Readiness Sync</div><div class="doc-meta">Jul 9, 2026 · 42 min · Mike McGugan, Priya R., Tom L.</div></div>
+      <div class="doc-right"><span class="chip">Transcript</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0M12 17v4"/></svg></div>
+      <div><div class="doc-name">CBRE IT/OT — Security Review Follow-up</div><div class="doc-meta">Jun 24, 2026 · 31 min · Mike McGugan, Dave K.</div></div>
+      <div class="doc-right"><span class="chip">Transcript</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0M12 17v4"/></svg></div>
+      <div><div class="doc-name">CBRE IT/OT — PRD v2 Walkthrough</div><div class="doc-meta">Apr 22, 2026 · 55 min · Mike McGugan, Priya R., Aryan R.</div></div>
+      <div class="doc-right"><span class="chip">Transcript</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row" style="justify-content:center;color:var(--muted);font-size:12px;cursor:pointer">Show 4 more transcripts</div>
+
+    <div class="sec-title">Client communications <span style="color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">linked from HubSpot</span></div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div>
+      <div><div class="doc-name">RE: Service account migration — CBRE IT</div><div class="doc-meta">Jul 9, 2026 · Thread of 4 · Dave K., Mike McGugan</div></div>
+      <div class="doc-right"><span class="chip">HubSpot</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div>
+      <div><div class="doc-name">CBRE ITOT kickoff — agenda &amp; attendees</div><div class="doc-meta">Mar 2, 2026 · Thread of 7 · Priya R., Mike McGugan</div></div>
+      <div class="doc-right"><span class="chip">HubSpot</span><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row" style="justify-content:center;color:var(--muted);font-size:12px;cursor:pointer">Show 10 more email threads</div>
+
+    <div class="sec-title">Other documents <span style="color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">not required</span></div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg></div>
+      <div><div class="doc-name">Sample cyber security report — Building 1 (source)</div><div class="doc-meta">XLSX · Uploaded Mar 12, 2026 · 1,842 rows</div></div>
+      <div class="doc-right"><button class="btn btn-sm">Open</button></div>
+    </div>
+    <div class="doc-row">
+      <div class="doc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+      <div><div class="doc-name">Severity mapping logic — v3</div><div class="doc-meta">Google Sheet · Updated Jun 18, 2026</div></div>
+      <div class="doc-right"><button class="btn btn-sm">Open</button></div>
+    </div>
+
+    <div class="dropzone mt-20">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v13"/></svg>
+      <div>Drop files here or <span class="t-green" style="font-weight:500">browse</span></div>
+      <div class="note" style="margin-top:6px">Uploads are tagged by category. Anything marked required and left empty is flagged on the Project Overview and pulls down the health score.</div>
+    </div>
+  </div>
+
+</section>
+
+</div></div>
+
+<script>
+/* ================== DATA ================== */
+const TODAY = new Date('2026-07-22');
+const D = s => new Date(s + 'T12:00:00');
+const fmt = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+const money = n => '$' + n.toLocaleString();
+
+const PROJECTS = [
+  { client:'CBRE', name:'CBRE (IT/OT) — Cyber Security Reports', size:'XL', arr:1800000,
+    phase:'Build', health:'At Risk', owners:[['MM',1],['AR',2]], updated:'5h ago',
+    start:'2026-03-03', proj:'2026-06-30', revs:[
+      {date:'2026-07-24', filed:'May 12', why:'CBRE IT/OT security review added ~3 weeks of access provisioning before we could reach the OT network.'},
+      {date:'2026-08-14', filed:'Jun 30', why:'Smartsheet API account tied to a departed employee — service-account migration is a prerequisite for the 16-building rollout.'}],
+    real:null, todos:4, blockers:2, link:true },
+
+  { client:'CBRE', name:'CBRE — Tenant Billbacks', size:'L', arr:650000,
+    phase:'PRD Sign-Off', health:'Off Track', owners:[['MM',1]], updated:'5h ago',
+    start:'2026-04-28', proj:'2026-09-15', revs:[
+      {date:'2026-10-30', filed:'Jul 2', why:'Phase 1 scope re-cut after client feedback — utility coverage table needs a second data source.'}],
+    real:null, todos:3, blockers:1 },
+
+  { client:'CBRE', name:'CBRE — Angus → VTS Activate Migration', size:'L', arr:420000,
+    phase:'Live', health:'On Track', owners:[['MM',1],['SD',3]], updated:'2mo ago',
+    start:'2025-09-08', proj:'2026-02-13', revs:[], real:'2026-02-09', todos:0, blockers:0 },
+
+  { client:'Marc Realty', name:'Marc Realty — Tenant Email Automation', size:'M', arr:250000,
+    phase:'Customer Iteration / UAT', health:'At Risk', owners:[['MM',1],['AR',2]], updated:'1d ago',
+    start:'2026-01-12', proj:'2026-05-30', revs:[
+      {date:'2026-06-27', filed:'Apr 30', why:'Client paused UAT for two weeks over month-end close.'},
+      {date:'2026-07-18', filed:'Jun 12', why:'Additional email template variants requested for three property types.'},
+      {date:'2026-07-31', filed:'Jul 8', why:'Final round of client copy edits on the renewal template.'}],
+    real:null, todos:5, blockers:2 },
+
+  { client:'Marc Realty', name:'Marc Realty — Lease Generation', size:'L', arr:250000,
+    phase:'QA / Testing', health:'On Track', owners:[['MM',1],['SD',3]], updated:'6h ago',
+    start:'2026-02-09', proj:'2026-07-15', revs:[
+      {date:'2026-08-28', filed:'Jun 20', why:'Added clause library coverage for two additional lease forms.'}],
+    real:null, todos:2, blockers:0 },
+
+  { client:'Marc Realty', name:'Marc Realty — Lease Abstraction', size:'M', arr:250000,
+    phase:'Live', health:'On Track', owners:[['MM',1]], updated:'4mo ago',
+    start:'2025-11-03', proj:'2026-03-14', revs:[], real:'2026-03-20', todos:0, blockers:0 },
+
+  { client:'Trilogy', name:'Trilogy — Automated Proforma', size:'L', arr:180000,
+    phase:'Discovery', health:'On Track', owners:[['MM',1],['AN',4]], updated:'3h ago',
+    start:'2026-06-16', proj:'2026-11-20', revs:[], real:null, todos:2, blockers:0 },
+
+  { client:'Trilogy', name:'Trilogy — Deal Thesis Generator', size:'S', arr:90000,
+    phase:'Build', health:'On Track', owners:[['AR',2]], updated:'1d ago',
+    start:'2026-07-01', proj:'2026-09-30', revs:[], real:null, todos:1, blockers:0 },
+
+  { client:'Lux Living', name:'Lux Living — Application Comparison', size:'M', arr:140000,
+    phase:'Customer Iteration / UAT', health:'Off Track', owners:[['MM',1],['AR',2]], updated:'2d ago',
+    start:'2026-03-30', proj:'2026-08-08', revs:[
+      {date:'2026-09-05', filed:'Jun 25', why:'Waiting on original application emails from client to validate the needs-review flow.'}],
+    real:null, todos:3, blockers:1 },
+
+  { client:'Lux Living', name:'Lux Living — Renewal Notices', size:'S', arr:85000,
+    phase:'Live', health:'On Track', owners:[['MM',1]], updated:'5mo ago',
+    start:'2025-10-06', proj:'2026-02-28', revs:[], real:'2026-02-24', todos:0, blockers:0 },
+
+  { client:'Lux Living', name:'Lux Living — Lease Audit', size:'S', arr:60000,
+    phase:'Live', health:'On Track', owners:[['MM',1]], updated:'3mo ago',
+    start:'2025-12-01', proj:'2026-04-10', revs:[], real:'2026-04-22', todos:0, blockers:0 }
+];
+
+const HEALTH_CLASS = {'On Track':'bg-green','At Risk':'bg-amber','Off Track':'bg-red'};
+
+/* ================== LANDING RENDER ================== */
+function miniTimeline(p){
+  const start = D(p.start), proj = D(p.proj);
+  const latest = p.real ? D(p.real) : (p.revs.length ? D(p.revs[p.revs.length-1].date) : proj);
+  const end = new Date(Math.max(latest.getTime(), proj.getTime()));
+  const span = Math.max(end - start, 1);
+  const pos = d => Math.round(((D(d) - start) / span) * 100);
+  const todayPct = p.real ? null : Math.max(0, Math.min(100, Math.round(((TODAY - start)/span)*100)));
+
+  const projPct = pos(p.proj);
+  let html = '<div class="mtl"><div class="mtl-line"></div>';
+  html += `<div class="mtl-fill" style="width:${Math.min(projPct, todayPct===null?100:todayPct)}%"></div>`;
+  if (projPct < 100) html += `<div class="mtl-over" style="left:${projPct}%;width:${100-projPct}%"></div>`;
+
+  html += `<div class="mtl-node start tip" style="left:0"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(start)}</span>
+    <div class="tip-box" style="left:0;transform:none"><b>Start date</b>Auto-derived from the kickoff call logged in Slack or email. Locked.</div></div>`;
+
+  html += `<div class="mtl-node proj tip" style="left:${projPct}%"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(proj)}</span>
+    <div class="tip-box"><b>Projected end — locked</b>Set at scoping and never edited, so overrun stays measurable.</div></div>`;
+
+  p.revs.forEach((r,i)=>{
+    html += `<div class="mtl-node rev tip" style="left:${pos(r.date)}%"><span class="mtl-dot"></span><span class="mtl-cap">${fmt(D(r.date))}</span>
+      <div class="tip-box"><b>Revision ${i+1} — filed ${r.filed}</b>${r.why}</div></div>`;
+  });
+
+  if (p.real){
+    html += `<div class="mtl-node real tip" style="left:${pos(p.real)}%"><span class="mtl-dot"></span><span class="mtl-cap t-green">${fmt(D(p.real))}</span>
+      <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date</b>Auto-filled from the deployment email. Delivered ${Math.round((D(p.real)-proj)/864e5)} days ${D(p.real)>proj?'after':'before'} the projected end.</div></div>`;
+  } else {
+    html += `<div class="mtl-node real tip" style="left:100%"><span class="mtl-dot" style="background:var(--bg);border-color:var(--dim);border-style:dashed;box-shadow:none"></span><span class="mtl-cap" style="color:var(--dim)">Real end</span>
+      <div class="tip-box" style="left:auto;right:0;transform:none"><b>Real end date — pending</b>Auto-filled when the deployment email is detected.</div></div>`;
+    if (todayPct !== null) html += `<div class="mtl-node today" style="left:${todayPct}%"><span class="mtl-dot"></span></div>`;
+  }
+  html += '</div>';
+
+  const slip = Math.round((latest - proj)/864e5);
+  const remain = Math.round((latest - TODAY)/864e5);
+  let meta = `<div class="mtl-meta">`;
+  if (p.real) meta += `<span class="t-green">Delivered ${fmt(D(p.real))}</span>`;
+  else meta += `<span>${remain} days remaining</span>`;
+  if (p.revs.length) meta += `<span>·</span><span class="t-amber">${p.revs.length} revision${p.revs.length>1?'s':''} · +${slip}d</span>`;
+  else if (p.real && slip !== 0) meta += `<span>·</span><span class="${slip>0?'t-amber':'t-green'}">${slip>0?'+':''}${slip}d vs. projected</span>`;
+  else meta += `<span>·</span><span class="t-green">No revisions</span>`;
+  meta += `</div>`;
+  return html + meta;
+}
+
+function projectCard(p){
+  const owners = p.owners.map(o=>`<span class="ava ava-${o[1]}">${o[0]}</span>`).join('');
+  return `
+  <div class="pcard" ${p.link?'onclick="go(\'project\')"':''}>
+    <div class="pcard-top">
+      <div>
+        <div class="pname">${p.name}</div>
+        <div class="pclient">${p.client}</div>
+      </div>
+      <div class="pcard-top-right">
+        <span class="chip size-chip size-${p.size}">${p.size}</span>
+        <span class="arr">${money(p.arr)}</span>
+        <span class="badge ${HEALTH_CLASS[p.health]}"><span class="dot"></span>${p.health}</span>
+      </div>
+    </div>
+    <div class="pcols">
+      <div>
+        <div class="col-label">Timeline</div>
+        ${miniTimeline(p)}
+      </div>
+      <div class="divider-col"></div>
+      <div>
+        <div class="col-label">Current status</div>
+        <div class="status-row">
+          <span class="phase-pill"><span class="dot" style="width:5px;height:5px;border-radius:50%;background:var(--green)"></span>${p.phase}</span>
+          <span class="stat-mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L20 5"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg><b>${p.todos}</b> to-dos</span>
+          <span class="stat-mini" ${p.blockers?'style="border-color:rgba(248,113,113,.3);color:var(--red)"':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg><b ${p.blockers?'style="color:var(--red)"':''}>${p.blockers}</b> blockers</span>
+        </div>
+      </div>
+      <div class="divider-col"></div>
+      <div>
+        <div class="col-label">Owners</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="owners">${owners}</div>
+          <span style="font-size:11px;color:var(--dim);margin-left:auto">${p.updated}</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGroups(){
+  const clients = [...new Set(PROJECTS.map(p=>p.client))];
+  const html = clients.map(c=>{
+    const list = PROJECTS.filter(p=>p.client===c);
+    const arr = list.reduce((s,p)=>s+p.arr,0);
+    const worst = list.some(p=>p.health==='Off Track') ? 'Off Track'
+                : list.some(p=>p.health==='At Risk') ? 'At Risk' : 'On Track';
+    const active = list.filter(p=>p.phase!=='Live').length;
+    return `
+    <div class="group">
+      <div class="group-head" onclick="this.parentNode.classList.toggle('collapsed')">
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="client-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16M10 11h.01M14 11h.01M10 15h.01M14 15h.01"/></svg></div>
+        <div class="group-name">${c}</div>
+        <div class="group-meta">
+          <span>${list.length} project${list.length>1?'s':''} · ${active} active</span>
+          <span class="badge ${HEALTH_CLASS[worst]}"><span class="dot"></span>${worst}</span>
+          <span class="arr">${money(arr)}</span>
+        </div>
+      </div>
+      <div class="group-body">${list.map(projectCard).join('')}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('groups').innerHTML = html;
+}
+
+/* ================== TASKS TABLE ================== */
+const TASKS = [
+  ['Smartsheet service-account migration','DEV','OUT-401',['AR',2],'Aryan R.','Build','Jul 21','blocked'],
+  ['VPN credentials for 13 rollout buildings','CS','CS-88',['MM',1],'Mike McGugan','Build','Jul 18','blocked'],
+  ['Send service-account migration request to CBRE IT','CS','CS-91',['MM',1],'Mike McGugan','Build','Jul 23','progress'],
+  ['Finish severity-mapping rules for Building 4–7 template','DEV','OUT-412',['AR',2],'Aryan R.','Build','Jul 25','progress'],
+  ['Confirm Smartsheet column schema for rollout buildings','DEV','OUT-418',['SD',3],'Sid','Build','Jul 28','todo'],
+  ['Schedule Aug rollout readiness review with CBRE','CS','CS-93',['MM',1],'Mike McGugan','Build','Jul 30','todo'],
+  ['Build report template for Buildings 8–12','DEV','OUT-421',['AR',2],'Aryan R.','Build','Aug 4','todo'],
+  ['Add retry handling to Smartsheet upload activity','DEV','OUT-424',['SD',3],'Sid','Build','Aug 5','todo'],
+  ['Regression suite for severity mapping edge cases','DEV','OUT-427',null,'Unassigned','QA / Testing','Aug 8','todo'],
+  ['Draft UAT script for CBRE reviewers','CS','CS-95',[ 'MM',1],'Mike McGugan','QA / Testing','Aug 7','todo'],
+  ['Wire Fireflies transcript ingest for rollout calls','DEV','OUT-430',['SD',3],'Sid','Build','Aug 11','todo'],
+  ['Validate output against Building 3 golden file','DEV','OUT-433',['AR',2],'Aryan R.','QA / Testing','Aug 12','todo'],
+  ['Confirm report distribution list with Dave K.','CS','CS-97',['MM',1],'Mike McGugan','Customer Iteration / UAT','Aug 13','todo'],
+  ['Performance pass — 1,800-row report under 90s','DEV','OUT-436',['AR',2],'Aryan R.','QA / Testing','Aug 13','todo']
+];
+const STATUS_BADGE = {
+  blocked:'<span class="badge bg-red"><span class="dot"></span>Blocked</span>',
+  progress:'<span class="badge bg-amber"><span class="dot"></span>In Progress</span>',
+  todo:'<span class="badge" style="background:var(--card-3);color:var(--muted)"><span class="dot"></span>To Do</span>'
+};
+function renderTasks(){
+  document.getElementById('taskbody').innerHTML = TASKS.map(t=>{
+    const [title,type,ref,av,who,phase,due,st] = t;
+    const flag = st==='blocked'
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="width:14px;height:14px"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>'
+      : '<span class="cbx"></span>';
+    const avatar = av ? `<span class="ava ava-${av[1]}" style="width:19px;height:19px;font-size:9px;margin-right:7px">${av[0]}</span>`
+                      : '<span class="ava" style="width:19px;height:19px;font-size:9px;margin-right:7px;background:var(--card-3);color:var(--dim)">?</span>';
+    return `<tr>
+      <td style="padding-left:12px">${flag}</td>
+      <td class="strong">${title}</td>
+      <td><span class="badge ${type==='DEV'?'bg-blue':'bg-violet'}">${type}</span></td>
+      <td class="mono ${type==='DEV'?'t-blue':'t-mute'}">${ref}</td>
+      <td>${avatar}${who}</td>
+      <td>${phase}</td>
+      <td class="num">${due}</td>
+      <td>${STATUS_BADGE[st]}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* ================== ROUTING ================== */
+function go(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
+  document.getElementById('view-'+view).classList.remove('hidden');
+  location.hash = view==='landing' ? '#/' : '#/project/overview';
+  window.scrollTo(0,0);
+}
+function tab(name){
+  document.getElementById('view-landing').classList.add('hidden');
+  document.getElementById('view-project').classList.remove('hidden');
+  document.querySelectorAll('.tabpane').forEach(p=>p.classList.add('hidden'));
+  document.getElementById('tab-'+name).classList.remove('hidden');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.tab===name));
+  location.hash = '#/project/'+name;
+  window.scrollTo(0,0);
+}
+function route(){
+  const h = location.hash.replace(/^#\/?/,'');
+  if (h.startsWith('project')){
+    const t = h.split('/')[1] || 'overview';
+    tab(t);
+  } else {
+    document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
+    document.getElementById('view-landing').classList.remove('hidden');
+  }
+}
+renderGroups(); renderTasks(); route();
+window.addEventListener('hashchange', route);
+</script>
+</body>
+</html>
